@@ -25,7 +25,7 @@ Save the file and have composer update the project via the command line:
 ``` shell
 composer update
 ```
-Now just update the app/AppKernel.php and app/config/routing.yml to include our bundle:
+Now just update the app/AppKernel.php:
 ``` php
 //app/AppKernel.php
 //...
@@ -40,7 +40,7 @@ Now just update the app/AppKernel.php and app/config/routing.yml to include our 
 <a name="configuration"></a>
 
 ### Configuration example
-add the bundle to orm configuration:
+Add the bundle to orm configuration:
 You can configure default query parameter names and templates
 
 ```
@@ -56,11 +56,11 @@ abc_easy_mail:
             logo: 'logo.img'
             title: 'Company Name'
             footer: 'Atte.'
-        other: 
-            template: MyBundle:Default:mail.html.twig
-            logo: 'logo.img'
-            title: 'Other Company Name'
-            footer: 'Atte.'
+        #other: 
+            #template: MyBundle:Default:mail.html.twig
+            #logo: 'logo.img'
+            #title: 'Other Company Name'
+            #footer: 'Atte.'
 ```
 and now you're done.
 
