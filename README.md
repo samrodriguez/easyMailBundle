@@ -67,7 +67,7 @@ and now you're done.
 
 ## Usage examples:
 
-### Controller (basic)
+### Controller (Basic)
 
 ```php
 // ABC\EasyMailBundle\Controller\DefaultController.php
@@ -89,7 +89,7 @@ class DefaultController extends Controller
     }
 }
 ```
-### Controller (advance)
+### Controller (Advanced)
 
 ```php
 // ABC\EasyMailBundle\Controller\DefaultController.php
