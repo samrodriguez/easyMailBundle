@@ -1,0 +1,31 @@
+{
+    "name":         "samrodriguez/easy-mail-bundle",
+    "type":         "library",
+    "description":  "The easyMailBundle, for Symfony2, provide an easy way to send email with temple",
+    "keywords":     ["mail","symfony2"],
+
+    "license":      "MIT",
+    "authors":      [
+        {
+            "name":     "Sam",
+            "email":    "melitor@gmail.com",
+            "homepage": "https://github.com/samrodriguez"
+        }
+    ],
+    "require":      {
+        "php": ">=5.3.2"
+
+
+    },
+    
+    "autoload":     {
+        "psr-4": { "ABC\\EasyMailBundle\\": "src/ABC/EasyMailBundle/" }
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
+

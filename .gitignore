@@ -1,0 +1,15 @@
+/app/*
+/bin/*
+vendor/*
+/web/*
+!web/img
+/nbproject/*
+composer.lock
+
+
+
+
+
+
+
+

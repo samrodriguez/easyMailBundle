@@ -1,0 +1,10 @@
+services:
+#    abc_easy_mail.example:
+#        class: ABC\EasyMailBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    #ENVIO DE CORREOS CON PLANTILLAS
+    easy.mailer:
+        class: ABC\EasyMailBundle\Service\EasyMailService
+        arguments: 
+            mail: '@mailer'
+            templating: '@templating'
