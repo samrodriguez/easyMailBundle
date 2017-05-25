@@ -1,13 +1,15 @@
-Symfony 2.x easyMailBundle
+easyMailBundle
 ==========================
 
+The easyMailBundle, for Symfony2, provide an easy way to send email with temple
 
+## Installing
+easyMailBundle uses Composeris, please checkout the [composer website](http://getcomposer.org) for more information.
 
-## Installing the easyMailBundle in a new Symfony2 project
-So the easyMailBundle is ready for installation, great news but how do we install it.  The installation process is actually very simple.  Set up a new Symfony2 project with Composer.
+The simple following command will install `easyMailBundle` into your project. It also add a new
+entry in your `composer.json` and update the `composer.lock` as well.
 
-Require from the command line directly:
-```
+```bash
 composer require samdeb/easymailbundle:dev-master
 ```
 
@@ -41,6 +43,18 @@ add the bundle to orm configuration:
 abc_easy_mail:
     from: system@mydomain.com
     reply: soporte@mydomain.com
+    theme : default
+    twig:
+        default: 
+            template: ABCEasyMailBundle:Default:easyMail.html.twig
+            logo: 'logo.img'
+            title: 'Company Name'
+            footer: 'Atte.'
+        other: 
+            template: MyBundle:Default:mail.html.twig
+            logo: 'logo.img'
+            title: 'Other Company Name'
+            footer: 'Atte.'
 ```
 clear cache and update database:
 ``` shell
