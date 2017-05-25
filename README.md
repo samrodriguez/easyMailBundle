@@ -67,7 +67,29 @@ and now you're done.
 
 ## Usage examples:
 
-### Controller
+### Controller (basic)
+
+```php
+// ABC\EasyMailBundle\Controller\DefaultController.php
+
+class DefaultController extends Controller
+{
+    public function indexAction()
+    {
+        $mail = $this->get('easy.mailer');
+        $settings = array(
+                          'to'=>'email@mydomain.com',
+                          'subject' => 'This is my subject',
+                          'body'    => array(
+                                        'content' => 'Put your text',
+                                    )
+                    );
+        $mail->send($settings);
+        return $this->render('ABCEasyMailBundle:Default:index.html.twig');
+    }
+}
+```
+### Controller (advance)
 
 ```php
 // ABC\EasyMailBundle\Controller\DefaultController.php
@@ -101,5 +123,10 @@ class DefaultController extends Controller
 
 ### View
 ```twig
+{% extends "ABCEasyMailBundle:Default:Layout.html.twig" %}
 
+{% block logo %} {{ asset('img/'~logo)}} {% endblock %}
+{% block title %} {{title}} {% endblock %}
+{% block content %} {{content}} {% endblock %}
+{% block footer %} {{footer}} {% endblock %}
 ```
