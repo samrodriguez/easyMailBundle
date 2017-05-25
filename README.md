@@ -25,7 +25,7 @@ Save the file and have composer update the project via the command line:
 ``` shell
 composer update
 ```
-Now just update the app/AppKernel.php and app/config/routing.yml to include our bundle, clear the cache and update the schema:
+Now just update the app/AppKernel.php and app/config/routing.yml to include our bundle:
 ``` php
 //app/AppKernel.php
 //...
@@ -36,14 +36,20 @@ Now just update the app/AppKernel.php and app/config/routing.yml to include our 
             new ABC\EasyMailBundle\ABCEasyMailBundle(),
         );
 ```
+
+<a name="configuration"></a>
+
+### Configuration example
 add the bundle to orm configuration:
+You can configure default query parameter names and templates
+
 ```
 #app/config/config.yml
 #...
 abc_easy_mail:
     from: system@mydomain.com
     reply: soporte@mydomain.com
-    theme : default
+    theme : default 
     twig:
         default: 
             template: ABCEasyMailBundle:Default:easyMail.html.twig
@@ -56,9 +62,44 @@ abc_easy_mail:
             title: 'Other Company Name'
             footer: 'Atte.'
 ```
-clear cache and update database:
-``` shell
-php app/console cache:clear
+and now you're done.
+
+
+## Usage examples:
+
+### Controller
+
+```php
+// ABC\EasyMailBundle\Controller\DefaultController.php
+
+class DefaultController extends Controller
+{
+    public function indexAction()
+    {
+        $mail = $this->get('easy.mailer');
+        $settings = array('theme'=>'other',
+                          'to'=>'email@mydomain.com',
+                          /*
+                          'cc'=>'myemail@mydomain.com',
+                          'bcc'=> 'otheremail@mydomain.com',
+                          */
+                          'subject' => 'This is my subject',
+                          'body'    => array(
+                                        /*
+                                         'logo'   => 'Mylogo.jpg',
+                                         'title'  => 'Diferent Company Name',
+                                         */
+                                        'content' => 'Put your text',
+                                        'footer'  => 'Saludos'
+                                    )
+                    );
+        $mail->send($settings);
+        return $this->render('ABCEasyMailBundle:Default:index.html.twig');
+    }
+}
 ```
 
-and now you're done.
+### View
+```twig
+
+```
