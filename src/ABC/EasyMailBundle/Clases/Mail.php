@@ -1,15 +1,16 @@
 <?php
 namespace ABC\EasyMailBundle\Clases;
+
 use ABC\EasyMailBundle\Clases\TemplateBody;
 
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-class Mail{
-    
+class Mail
+{
     protected $from;
     protected $to;
     protected $cc;
@@ -17,76 +18,93 @@ class Mail{
     protected $reply;
     protected $subject;
     protected $body;
-    protected $settings; 
+    protected $settings;
     protected $templeBody;
    
-    function __construct($from,$reply) {
+    public function __construct($from, $reply)
+    {
         $this->from  = $from;
         $this->reply = $reply;
     }
 
         
-    function getFrom() {
+    public function getFrom()
+    {
         return $this->from;
     }
 
-    function getTo() {
+    public function getTo()
+    {
         return $this->to;
     }
 
-    function getCc() {
+    public function getCc()
+    {
         return $this->cc;
     }
 
-    function getBcc() {
+    public function getBcc()
+    {
         return $this->bcc;
     }
 
-    function getReply() {
+    public function getReply()
+    {
         return $this->reply;
     }
 
-    function getSubject() {
+    public function getSubject()
+    {
         return $this->subject;
     }
 
-    function getBody() {
+    public function getBody()
+    {
         return $this->body;
     }
 
-    function setFrom($from) {
+    public function setFrom($from)
+    {
         $this->from = $from;
     }
 
-    function setTo($to) {
+    public function setTo($to)
+    {
         $this->to = $to;
     }
 
-    function setCc($cc) {
+    public function setCc($cc)
+    {
         $this->cc = $cc;
     }
 
-    function setBcc($bcc) {
+    public function setBcc($bcc)
+    {
         $this->bcc = $bcc;
     }
 
-    function setReply($reply) {
+    public function setReply($reply)
+    {
         $this->reply = $reply;
     }
 
-    function setSubject($subject) {
+    public function setSubject($subject)
+    {
         $this->subject = $subject;
     }
 
-    function setBody($body) {
+    public function setBody($body)
+    {
         $this->body = $body;
     }
 
-    function getSettings() {
+    public function getSettings()
+    {
         return $this->settings;
     }
     
-    function setSettings($settings) {
+    public function setSettings($settings)
+    {
         if (array_key_exists('theme', $settings)) {
             $this->templeBody->setTheme($settings['theme']);
         }
@@ -121,11 +139,13 @@ class Mail{
         return $this->settings = $settings;
     }
     
-    function getTempleBody() {
+    public function getTempleBody()
+    {
         return $this->templeBody;
     }
 
-    function setTempleBody(TemplateBody $templeBody) {
+    public function setTempleBody(TemplateBody $templeBody)
+    {
         $this->templeBody = $templeBody;
     }
     
@@ -146,13 +166,11 @@ class Mail{
         
         if ($this->reply != null) {
             $email->setReplyTo($this->reply);
-        } 
+        }
         
         $email->setSubject($this->subject);
         $email->setBody($this->body);
         
         return $email;
     }
-
-
 }

@@ -1,7 +1,9 @@
 <?php
 namespace ABC\EasyMailBundle\Service;
-use ABC\EasyMailBundle\Clases\Mail; 
+
+use ABC\EasyMailBundle\Clases\Mail;
 use ABC\EasyMailBundle\Clases\TemplateBody;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,11 +16,11 @@ class EasyMailService
     protected $from;
     protected $reply;
     protected $theme;
-    protected $twig; 
+    protected $twig;
     
     /* Contructor */
     protected $swiftmailer;
-    protected $templating; 
+    protected $templating;
     
  
     public function __construct($swiftmailer, $templating)
@@ -27,19 +29,23 @@ class EasyMailService
         $this->swiftmailer = $swiftmailer;
     }
     
-    function getFrom() {
+    public function getFrom()
+    {
         return $this->from;
     }
 
-    function getReply() {
+    public function getReply()
+    {
         return $this->reply;
     }
 
-    function setFrom($from) {
+    public function setFrom($from)
+    {
         $this->from = $from;
     }
 
-    function setReply($reply) {
+    public function setReply($reply)
+    {
         $this->reply = $reply;
     }
        
@@ -67,8 +73,8 @@ class EasyMailService
                     
     public function send($settings)
     {
-        $templateBoby = new TemplateBody($this->templating,$this->theme,$this->twig);
-        $mail         = new Mail($this->from,$this->reply);
+        $templateBoby = new TemplateBody($this->templating, $this->theme, $this->twig);
+        $mail         = new Mail($this->from, $this->reply);
         $mail->setTempleBody($templateBoby);
         $mail->setSettings($settings);
         
@@ -76,8 +82,5 @@ class EasyMailService
             echo "Failures:";
             print_r($failures);
         }
-        
     }
-
-
 }

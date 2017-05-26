@@ -33,6 +33,5 @@ class ABCEasyMailExtension extends Extension
                 ->addMethodCall('setTheme', array($config['theme']));
         $container->getDefinition('easy.mailer')
                 ->addMethodCall('setTwig', array($config['twig']));
-        
     }
 }
