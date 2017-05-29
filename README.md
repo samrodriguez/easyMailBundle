@@ -53,12 +53,12 @@ abc_easy_mail:
     themes:
         default: 
             twig: ABCEasyMailBundle:Default:easyMail.html.twig
-            logo: 'logo.img'
+            logo: 'https://github.com/samrodriguez/easyMailBundle/blob/master/web/img/logo.png'
             title: 'Company Name'
             footer: 'Atte.'
         #other: 
             #twig: MyBundle:Default:mail.html.twig
-            #logo: 'logo.img'
+            #logo: 'url_logo'
             #title: 'Other Company Name'
             #footer: 'Atte.'
 ```
