@@ -125,7 +125,7 @@ class DefaultController extends Controller
 ```twig
 {% extends "ABCEasyMailBundle:Default:Layout.html.twig" %}
 
-{% block logo %} {{ asset('img/'~logo)}} {% endblock %}
+{% block logo %} {{logo}} {% endblock %}
 {% block title %} {{title}} {% endblock %}
 {% block content %} {{content}} {% endblock %}
 {% block footer %} {{footer}} {% endblock %}
