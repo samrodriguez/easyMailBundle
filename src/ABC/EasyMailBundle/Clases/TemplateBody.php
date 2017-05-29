@@ -40,7 +40,9 @@ class TemplateBody
             $this->values['footer']   = 'Atte.';
             
         }elseif (array_key_exists($defaultTheme, $this->themes)) {
+            
             $default  = $this->themes[$defaultTheme];
+            unset($this->values);
             $this->setSettings($default);            
         }
         
