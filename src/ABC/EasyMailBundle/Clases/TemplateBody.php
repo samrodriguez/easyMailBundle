@@ -10,17 +10,14 @@ namespace ABC\EasyMailBundle\Clases;
 class TemplateBody
 {
     protected $templating;
-    protected $twig;
-    protected $logo;
-    protected $title;
-    protected $content;
-    protected $footer;
-    protected $body;
- 
     /*aux*/
     protected $themes;
     protected $defaultTheme;
     
+    protected $twig;
+    protected $body;
+    protected $values = array();
+     
     public function __construct($templating, $defaultTheme, $themes)
     {
         $this->templating   = $templating;
@@ -36,12 +33,12 @@ class TemplateBody
     public function setDefaultTheme($defaultTheme)
     {
         if(is_null($defaultTheme)){
+            $this->twig               = 'ABCEasyMailBundle:Default:easyMail.html.twig';
+            $this->values['logo']     = 'https://github.com/samrodriguez/easyMailBundle/blob/master/web/img/logo.png';
+            $this->values['title']    = 'My Company';
+            $this->values['content']  = 'Example Message...';
+            $this->values['footer']   = 'Atte.';
             
-            $this->twig     = 'ABCEasyMailBundle:Default:easyMail.html.twig';
-            $this->logo     = 'https://github.com/samrodriguez/easyMailBundle/blob/master/web/img/logo.png';
-            $this->title    = 'My Company';
-            $this->content  = 'Example Message...';
-            $this->footer   = 'Atte.';
         }elseif (array_key_exists($defaultTheme, $this->themes)) {
             $default  = $this->themes[$defaultTheme];
             $this->setSettings($default);            
@@ -55,49 +52,9 @@ class TemplateBody
         return $this->twig;
     }
 
-    public function getLogo()
-    {
-        return $this->logo;
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    public function getFooter()
-    {
-        return $this->footer;
-    }
-
     public function setTwig($twig)
     {
         $this->twig = $twig;
-    }
-
-    public function setLogo($logo)
-    {
-        $this->logo = $logo;
-    }
-
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
-    public function setContent($content)
-    {
-        $this->content = $content;
-    }
-
-    public function setFooter($footer)
-    {
-        $this->footer = $footer;
     }
 
     public function getBody()
@@ -107,16 +64,7 @@ class TemplateBody
 
     public function setBody()
     {
-        
-        $render  = $this->templating->render(
-                        $this->getTwig(),
-                        array(
-                            'logo'      => $this->logo,
-                            'title'     => $this->title,
-                            'content'   => $this->content,
-                            'footer'    => $this->footer
-                        )
-                    );
+        $render  = $this->templating->render( $this->getTwig(), $this->getValues());                   
         $this->body = $render;
     }
     
@@ -130,17 +78,25 @@ class TemplateBody
             $this->twig = $settings['twig'];
         }
         if (array_key_exists('logo', $settings)) {
-            $this->logo     = $settings['logo'];
+            $this->values['logo'] = $settings['logo'];
         }
         if (array_key_exists('title', $settings)) {
-            $this->title    = $settings['title'];
+            $this->values['title'] = $settings['title'];
         }
         if (array_key_exists('content', $settings)) {
-            $this->content  = $settings['content'];
+            $this->values['content'] = $settings['content'];
         }
         if (array_key_exists('footer', $settings)) {
-            $this->footer   = $settings['footer'];
+            $this->values['footer'] = $settings['footer'];
         }
         $this->settings = $settings;
+    }
+    
+    function getValues() {
+        return $this->values;
+    }
+
+    function setValues(array $values) {
+        $this->values = $values;
     }
 }
