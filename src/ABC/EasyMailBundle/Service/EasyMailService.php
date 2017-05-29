@@ -15,8 +15,8 @@ class EasyMailService
     /* de Config*/
     protected $from;
     protected $reply;
-    protected $theme;
-    protected $twig;
+    protected $defaultTheme;
+    protected $themes;
     
     /* Contructor */
     protected $swiftmailer;
@@ -49,31 +49,32 @@ class EasyMailService
         $this->reply = $reply;
     }
        
-    public function getTheme()
+    public function getDefaultTheme()
     {
-        return $this->theme;
+        return $this->defaultTheme;
     }
     
-    public function setTheme($theme)
+    public function setDefaultTheme($defaultTheme)
     {
-        $this->theme = $theme;
+        $this->defaultTheme = $defaultTheme;
     }
 
-    public function getTwig()
+    public function getThemes()
     {
-        return $this->twig;
+        return $this->themes;
     }
     
-    public function setTwig($twig)
+    public function setThemes($themes)
     {
-        $this->twig = $twig;
+        $this->themes = $themes;
     }
     
 
                     
     public function send($settings)
     {
-        $templateBoby = new TemplateBody($this->templating, $this->theme, $this->twig);
+        $templateBoby = new TemplateBody($this->templating, $this->defaultTheme, $this->themes);
+        
         $mail         = new Mail($this->from, $this->reply);
         $mail->setTempleBody($templateBoby);
         $mail->setSettings($settings);

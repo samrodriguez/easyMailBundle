@@ -10,7 +10,7 @@ namespace ABC\EasyMailBundle\Clases;
 class TemplateBody
 {
     protected $templating;
-    protected $view;
+    protected $twig;
     protected $logo;
     protected $title;
     protected $content;
@@ -19,7 +19,6 @@ class TemplateBody
  
     /*aux*/
     protected $themes;
-    protected $theme;
     protected $defaultTheme;
     
     public function __construct($templating, $defaultTheme, $themes)
@@ -27,35 +26,33 @@ class TemplateBody
         $this->templating   = $templating;
         $this->themes       = $themes;
         $this->defaultTheme = $defaultTheme;
-        $this->setTheme($defaultTheme);
+        $this->setDefaultTheme($defaultTheme);
     }
     
-    public function getTheme()
+    public function getDefaultTheme()
     {
-        return $this->theme;
+        return $this->defaultTheme;
     }
-    public function setTheme($theme)
+    public function setDefaultTheme($defaultTheme)
     {
-        if (array_key_exists($theme, $this->themes)) {
-            $this->view = $this->themes[$theme]['template'];
-            $this->logo     = $this->themes[$theme]['logo'];
-            $this->title    = $this->themes[$theme]['title'];
-            $this->content  = 'Example Message...';
-            $this->footer   = $this->themes[$theme]['footer'];
-        } else {
-            $this->view = 'ABCEasyMailBundle:Default:easyMail.html.twig';
-            $this->logo     = 'logo.png';
+        if(is_null($defaultTheme)){
+            
+            $this->twig     = 'ABCEasyMailBundle:Default:easyMail.html.twig';
+            $this->logo     = 'https://github.com/samrodriguez/easyMailBundle/blob/master/web/img/logo.png';
             $this->title    = 'My Company';
             $this->content  = 'Example Message...';
             $this->footer   = 'Atte.';
+        }elseif (array_key_exists($defaultTheme, $this->themes)) {
+            $default  = $this->themes[$defaultTheme];
+            $this->setSettings($default);            
         }
         
-        $this->theme = $theme;
+        $this->defaultTheme = $defaultTheme;
     }
     
-    public function getView()
+    public function getTwig()
     {
-        return $this->view;
+        return $this->twig;
     }
 
     public function getLogo()
@@ -78,9 +75,9 @@ class TemplateBody
         return $this->footer;
     }
 
-    public function setView($view)
+    public function setTwig($twig)
     {
-        $this->view = $view;
+        $this->twig = $twig;
     }
 
     public function setLogo($logo)
@@ -110,8 +107,9 @@ class TemplateBody
 
     public function setBody()
     {
+        
         $render  = $this->templating->render(
-                        $this->getView(),
+                        $this->getTwig(),
                         array(
                             'logo'      => $this->logo,
                             'title'     => $this->title,
@@ -128,17 +126,20 @@ class TemplateBody
     }
     public function setSettings($settings)
     {
+        if (array_key_exists('twig', $settings)) {
+            $this->twig = $settings['twig'];
+        }
         if (array_key_exists('logo', $settings)) {
-            $this->logo    = $settings['logo'];
+            $this->logo     = $settings['logo'];
         }
         if (array_key_exists('title', $settings)) {
             $this->title    = $settings['title'];
         }
         if (array_key_exists('content', $settings)) {
-            $this->content    = $settings['content'];
+            $this->content  = $settings['content'];
         }
         if (array_key_exists('footer', $settings)) {
-            $this->footer    = $settings['footer'];
+            $this->footer   = $settings['footer'];
         }
         $this->settings = $settings;
     }

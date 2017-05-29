@@ -105,8 +105,8 @@ class Mail
     
     public function setSettings($settings)
     {
-        if (array_key_exists('theme', $settings)) {
-            $this->templeBody->setTheme($settings['theme']);
+        if (array_key_exists('default_theme', $settings)) {
+            $this->templeBody->setDefaultTheme($settings['default_theme']);
         }
         if (array_key_exists('from', $settings)) {
             $this->from = $settings['from'];

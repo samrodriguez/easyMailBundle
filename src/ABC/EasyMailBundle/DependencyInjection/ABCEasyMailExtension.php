@@ -30,8 +30,8 @@ class ABCEasyMailExtension extends Extension
         $container->getDefinition('easy.mailer')
                 ->addMethodCall('setReply', array($config['reply']));
         $container->getDefinition('easy.mailer')
-                ->addMethodCall('setTheme', array($config['theme']));
+                ->addMethodCall('setDefaultTheme', array($config['default_theme']));
         $container->getDefinition('easy.mailer')
-                ->addMethodCall('setTwig', array($config['twig']));
+                ->addMethodCall('setThemes', array($config['themes']));
     }
 }

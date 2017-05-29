@@ -18,6 +18,7 @@ class DefaultController extends Controller
                           'subject' => 'This is my subject',
                           'body'    => array(
                                         /*
+                                         'view'   => 'otra cosa'
                                          'logo'   => 'Mylogo.jpg',
                                          'title'  => 'Diferent Company Name',
                                          */
