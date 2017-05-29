@@ -49,15 +49,15 @@ You can configure default query parameter names and templates
 abc_easy_mail:
     from: system@mydomain.com
     reply: soporte@mydomain.com
-    theme : default 
-    twig:
+    default_theme : ~ 
+    themes:
         default: 
-            template: ABCEasyMailBundle:Default:easyMail.html.twig
+            twig: ABCEasyMailBundle:Default:easyMail.html.twig
             logo: 'logo.img'
             title: 'Company Name'
             footer: 'Atte.'
         #other: 
-            #template: MyBundle:Default:mail.html.twig
+            #twig: MyBundle:Default:mail.html.twig
             #logo: 'logo.img'
             #title: 'Other Company Name'
             #footer: 'Atte.'
@@ -99,7 +99,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $mail = $this->get('easy.mailer');
-        $settings = array('theme'=>'other',
+        $settings = array('default_theme'=>'other',
                           'to'=>'email@mydomain.com',
                           /*
                           'cc'=>'myemail@mydomain.com',
