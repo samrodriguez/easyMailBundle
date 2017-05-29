@@ -32,18 +32,16 @@ class TemplateBody
     }
     public function setDefaultTheme($defaultTheme)
     {
-        if(is_null($defaultTheme)){
+        if (is_null($defaultTheme)) {
             $this->twig               = 'ABCEasyMailBundle:Default:easyMail.html.twig';
             $this->values['logo']     = 'https://github.com/samrodriguez/easyMailBundle/blob/master/web/img/logo.png';
             $this->values['title']    = 'My Company';
             $this->values['content']  = 'Example Message...';
             $this->values['footer']   = 'Atte.';
-            
-        }elseif (array_key_exists($defaultTheme, $this->themes)) {
-            
+        } elseif (array_key_exists($defaultTheme, $this->themes)) {
             $default  = $this->themes[$defaultTheme];
             unset($this->values);
-            $this->setSettings($default);            
+            $this->setSettings($default);
         }
         
         $this->defaultTheme = $defaultTheme;
@@ -66,7 +64,7 @@ class TemplateBody
 
     public function setBody()
     {
-        $render  = $this->templating->render( $this->getTwig(), $this->getValues());                   
+        $render  = $this->templating->render($this->getTwig(), $this->getValues());
         $this->body = $render;
     }
     
@@ -94,11 +92,13 @@ class TemplateBody
         $this->settings = $settings;
     }
     
-    function getValues() {
+    public function getValues()
+    {
         return $this->values;
     }
 
-    function setValues(array $values) {
+    public function setValues(array $values)
+    {
         $this->values = $values;
     }
 }
