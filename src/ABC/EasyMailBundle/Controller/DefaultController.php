@@ -9,7 +9,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $mail = $this->get('easy.mailer');
-        $settings = array('default_theme'=>'other2',
+        $settings = array('default_theme'=>'other',
                           'to'=>'melitor@gmail.com',
                           /*
                           'cc'=>'myemail@email.com',
