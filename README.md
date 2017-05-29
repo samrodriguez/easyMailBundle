@@ -50,18 +50,26 @@ abc_easy_mail:
     from: system@mydomain.com
     reply: soporte@mydomain.com
     default_theme : ~ 
+```
+or
+```
+#app/config/config.yml
+#...
+abc_easy_mail:
+    from: system@mydomain.com
+    reply: soporte@mydomain.com
+    default_theme : mytheme
     themes:
-        default: 
+        mytheme: 
             twig: ABCEasyMailBundle:Default:easyMail.html.twig
             logo: 'https://github.com/samrodriguez/easyMailBundle/blob/master/web/img/logo.png'
             title: 'Company Name'
             footer: 'Atte.'
-        #other: 
-            #twig: MyBundle:Default:mail.html.twig
-            #logo: 'url_logo'
-            #title: 'Other Company Name'
-            #footer: 'Atte.'
+        othertheme: 
+            twig: MyBundle:Default:mail.html.twig
+            
 ```
+
 and now you're done.
 
 
