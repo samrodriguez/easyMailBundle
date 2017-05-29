@@ -21,8 +21,7 @@ install:
   #- phpenv config-add php.ini.dist
 
 script:
-  - ./vendor/bin/php-cs-fixer fix --verbose
-  - ./vendor/bin/phpunit
+  - bin/php-cs-fixer fix --verbose
 
 after_success:
 after_failure:
